@@ -1,0 +1,378 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анкета разработчика | Современный стиль</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 10% 30%, #0b1120, #111827);
+            font-family: 'Inter', 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* неоновый акцентный эффект */
+        .form-container {
+            max-width: 980px;
+            width: 100%;
+            background: rgba(18, 25, 45, 0.75);
+            backdrop-filter: blur(14px);
+            border-radius: 3rem;
+            box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 255, 255, 0.15);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .form-header {
+            background: linear-gradient(115deg, #0a0f1f 0%, #10172b 100%);
+            padding: 2rem 2.5rem;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.25);
+            position: relative;
+        }
+
+        .form-header h1 {
+            font-weight: 700;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #FFFFFF, #7dd3fc);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            font-weight: 500;
+            border-left: 3px solid #2dd4bf;
+            padding-left: 0.75rem;
+        }
+
+        .form-body {
+            padding: 2.2rem 2.5rem;
+        }
+
+        .field-group {
+            margin-bottom: 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .field-group label {
+            width: 180px;
+            font-weight: 600;
+            color: #cbd5e6;
+            font-size: 0.9rem;
+            padding-top: 0.7rem;
+            flex-shrink: 0;
+            letter-spacing: -0.2px;
+        }
+
+        .field-group .input-wrapper {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            background: #0f172ad9;
+            border: 1px solid #2d3a5e;
+            border-radius: 1.5rem;
+            font-size: 0.9rem;
+            font-family: 'Inter', monospace;
+            font-weight: 500;
+            transition: all 0.25s ease;
+            outline: none;
+            color: #f1f5f9;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #2dd4bf;
+            box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.25);
+            background: #0b1122;
+        }
+
+        /* стилизация placeholder */
+        input::placeholder, textarea::placeholder {
+            color: #5b6e8c;
+            font-weight: 400;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+            background: #0f172a80;
+            padding: 0.55rem 1.2rem;
+            border-radius: 2rem;
+            border: 1px solid #2d3a5e;
+            backdrop-filter: blur(4px);
+        }
+
+        .radio-group label {
+            width: auto;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding-top: 0;
+            color: #cbd5f0;
+            transition: 0.1s;
+        }
+
+        .radio-group input {
+            width: 18px;
+            height: 18px;
+            accent-color: #2dd4bf;
+            background: transparent;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: #0f172a80;
+            padding: 0.65rem 1.2rem;
+            border-radius: 2rem;
+            border: 1px solid #2d3a5e;
+            backdrop-filter: blur(4px);
+        }
+
+        .checkbox-wrapper input {
+            width: 20px;
+            height: 20px;
+            accent-color: #2dd4bf;
+            background: #111827;
+            border-radius: 6px;
+        }
+
+        .checkbox-wrapper label {
+            font-weight: 500;
+            cursor: pointer;
+            color: #e2e8ff;
+        }
+
+        select[multiple] {
+            min-height: 150px;
+            background: #0f172ad9;
+            border-radius: 1.2rem;
+            padding: 0.5rem;
+        }
+
+        select[multiple] option {
+            padding: 0.7rem 1rem;
+            border-radius: 1rem;
+            margin-bottom: 4px;
+            background: #1e293b;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        select[multiple] option:checked {
+            background: #2dd4bf linear-gradient(0deg, #14b8a6 0%, #2dd4bf 100%);
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+            line-height: 1.55;
+            border-radius: 1.5rem;
+        }
+
+        .action-buttons {
+            margin-top: 2.2rem;
+            text-align: right;
+            border-top: 1px solid #1e2a44;
+            padding-top: 1.8rem;
+        }
+
+        .save-btn {
+            background: linear-gradient(105deg, #2dd4bf, #0f766e);
+            border: none;
+            padding: 0.85rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 3rem;
+            color: #0f172a;
+            cursor: pointer;
+            transition: 0.25s ease;
+            letter-spacing: 0.3px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+        }
+
+        .save-btn:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(105deg, #5eead4, #2dd4bf);
+            box-shadow: 0 18px 28px -10px rgba(45, 212, 191, 0.4);
+        }
+
+        /* вспомогательный текст */
+        .helper-text {
+            font-size: 0.7rem;
+            color: #7e8eb3;
+            margin-top: 0.4rem;
+            margin-left: 0.3rem;
+            letter-spacing: 0.2px;
+        }
+
+        /* сохраняем общую структуру, только визуал */
+        @media (max-width: 720px) {
+            .form-body {
+                padding: 1.5rem;
+            }
+            .field-group {
+                flex-direction: column;
+            }
+            .field-group label {
+                width: 100%;
+                padding-top: 0;
+            }
+            .radio-group {
+                gap: 1rem;
+            }
+        }
+
+        /* декоративный эффект для полей ввода (без изменения структуры) */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(0.7);
+            cursor: pointer;
+        }
+
+        /* кастомный скролл для мультиселекта */
+        select[multiple]::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        select[multiple]::-webkit-scrollbar-track {
+            background: #1e293b;
+            border-radius: 10px;
+        }
+
+        select[multiple]::-webkit-scrollbar-thumb {
+            background: #2dd4bf;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <div class="form-header">
+        <h1>⚡ dev·анкета</h1>
+        <p>заполните профиль разработчика — данные остаются в безопасности</p>
+    </div>
+    
+    <div class="form-body">
+        <form method="POST" action="index.php">
+            <!-- ФИО -->
+            <div class="field-group">
+                <label for="fullname">🧑‍💻 ФИО *</label>
+                <div class="input-wrapper">
+                    <input type="text" id="fullname" name="fullname" placeholder="Иванов Иван Иванович" required>
+                </div>
+            </div>
+            
+            <!-- Телефон -->
+            <div class="field-group">
+                <label for="phone">📱 Телефон</label>
+                <div class="input-wrapper">
+                    <input type="tel" id="phone" name="phone" placeholder="+7 (999) 123-45-67">
+                </div>
+            </div>
+            
+            <!-- Email -->
+            <div class="field-group">
+                <label for="email">✉️ E-mail *</label>
+                <div class="input-wrapper">
+                    <input type="email" id="email" name="email" placeholder="hello@example.com" required>
+                </div>
+            </div>
+            
+            <!-- Дата рождения -->
+            <div class="field-group">
+                <label for="birthdate">🎂 Дата рождения</label>
+                <div class="input-wrapper">
+                    <input type="date" id="birthdate" name="birthdate">
+                </div>
+            </div>
+            
+            <!-- Пол -->
+            <div class="field-group">
+                <label>⚥ Пол</label>
+                <div class="input-wrapper radio-group">
+                    <label><input type="radio" name="gender" value="male"> Мужской</label>
+                    <label><input type="radio" name="gender" value="female"> Женский</label>
+                    <label><input type="radio" name="gender" value="other"> Другой</label>
+                    <label><input type="radio" name="gender" value="unspecified" checked> Не указан</label>
+                </div>
+            </div>
+            
+            <!-- Языки программирования -->
+            <div class="field-group">
+                <label>💻 Любимые языки *</label>
+                <div class="input-wrapper">
+                    <select name="fav_langs[]" id="fav_langs" multiple size="6" required>
+                        <option value="Pascal">Pascal</option>
+                        <option value="C">C</option>
+                        <option value="C++">C++</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="PHP">PHP</option>
+                        <option value="Python">Python</option>
+                        <option value="Java">Java</option>
+                        <option value="Haskell">Haskell</option>
+                        <option value="Clojure">Clojure</option>
+                        <option value="Prolog">Prolog</option>
+                        <option value="Scala">Scala</option>
+                        <option value="Go">Go</option>
+                    </select>
+                    <div class="helper-text">
+                        ⌘ Ctrl / Cmd + клик для выбора нескольких языков
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Биография -->
+            <div class="field-group">
+                <label for="bio">📝 Биография</label>
+                <div class="input-wrapper">
+                    <textarea id="bio" name="bio" rows="4" placeholder="Расскажите о своём опыте в разработке, проектах и интересах..."></textarea>
+                </div>
+            </div>
+            
+            <!-- Контракт -->
+            <div class="field-group">
+                <label>📑 Согласие</label>
+                <div class="input-wrapper checkbox-wrapper">
+                    <input type="checkbox" id="contractCheck" name="contract_agreed" required>
+                    <label for="contractCheck">Я принимаю условия обработки данных и пользовательского соглашения *</label>
+                </div>
+            </div>
+            
+            <!-- Кнопка сохранения -->
+            <div class="action-buttons">
+                <button type="submit" class="save-btn">✨ Сохранить анкету</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+```
